@@ -1,0 +1,43 @@
+# Конфигурация моделирования (можно править под свои сценарии)
+simulation:
+  dt: 0.01            # шаг ИНС, с (100 Гц)
+  T: 180.0            # длительность, с
+  scenario: "uav_route_with_outage"   # сценарий: uav_route | uav_orbit | uav_route_with_outage
+
+sensors:
+  imu:
+    accel_noise_std: 0.05      # СКО шума акселерометра, м/с^2
+    gyro_noise_std: 0.002      # СКО шума гироскопа, рад/с
+    accel_bias_init: [0.08, -0.04, 0.02]   # начальное смещение, м/с^2
+    gyro_bias_init: 0.004      # начальное смещение гироскопа по yaw, рад/с
+    accel_bias_rw_std: 0.0002  # СКО случайного блуждания смещения акселерометра, м/с^2/sqrt(s)
+    gyro_bias_rw_std: 0.00002  # СКО случайного блуждания смещения гироскопа, рад/с/sqrt(s)
+
+  gnss:
+    rate_hz: 1.0
+    pos_noise_std: [3.0, 3.0, 5.0]   # СКО ошибок координат GNSS (N,E,D), м
+    vel_noise_std: [0.2, 0.2, 0.4]   # СКО ошибок скорости GNSS (N,E,D), м/с
+    outage:
+      enabled: true
+      start_s: 60.0
+      end_s: 90.0
+
+  baro:
+    enabled: true
+    rate_hz: 10.0
+    height_noise_std: 1.0      # СКО баро-высоты, м
+
+ekf:
+  # Начальная ковариация
+  P0:
+    pos_std: 10.0
+    vel_std: 1.0
+    yaw_std: 10.0              # градусы
+    gyro_bias_std: 0.02        # рад/с
+    accel_bias_std: 0.2        # м/с^2
+  # Ковариации процесса (допущения о "шуме модели")
+  Q:
+    accel_noise_std: 0.05      # м/с^2
+    gyro_noise_std: 0.002      # рад/с
+    accel_bias_rw_std: 0.0002
+    gyro_bias_rw_std: 0.00002
