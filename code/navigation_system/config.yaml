@@ -1,0 +1,45 @@
+simulation:
+  dt: 0.1
+  T: 180.0
+  scenario: uav_route
+sensors:
+  imu:
+    accel_noise_std: 0.15
+    gyro_noise_std: 0.002
+    accel_bias_init:
+    - 0.05
+    - -0.03
+    - 0.08
+    gyro_bias_init: 0.0015
+    accel_bias_rw_std: 0.0005
+    gyro_bias_rw_std: 5.0e-05
+  gnss:
+    rate_hz: 1.0
+    pos_noise_std:
+    - 1.5
+    - 1.5
+    - 2.5
+    vel_noise_std:
+    - 0.2
+    - 0.2
+    - 0.25
+    outage:
+      enabled: true
+      start_s: 120.0
+      end_s: 165.0
+  baro:
+    enabled: true
+    rate_hz: 5.0
+    height_noise_std: 1.2
+ekf:
+  P0:
+    pos_std: 5.0
+    vel_std: 1.0
+    yaw_std: 20.0
+    gyro_bias_std: 0.01
+    accel_bias_std: 0.2
+  Q:
+    gyro_noise_std: 0.003
+    accel_noise_std: 0.3
+    gyro_bias_rw_std: 0.0001
+    accel_bias_rw_std: 0.001

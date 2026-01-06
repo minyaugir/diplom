@@ -1,0 +1,45 @@
+ekf:
+  P0:
+    accel_bias_std: 0.2
+    gyro_bias_std: 0.01
+    pos_std: 5.0
+    vel_std: 1.0
+    yaw_std: 20.0
+  Q:
+    accel_bias_rw_std: 0.001
+    accel_noise_std: 0.3
+    gyro_bias_rw_std: 0.0001
+    gyro_noise_std: 0.003
+sensors:
+  baro:
+    enabled: true
+    height_noise_std: 1.2
+    rate_hz: 5.0
+  gnss:
+    outage:
+      enabled: true
+      end_s: 165.0
+      start_s: 120.0
+    pos_noise_std:
+    - 1.5
+    - 1.5
+    - 2.5
+    rate_hz: 1.0
+    vel_noise_std:
+    - 0.2
+    - 0.2
+    - 0.25
+  imu:
+    accel_bias_init:
+    - 0.05
+    - -0.03
+    - 0.08
+    accel_bias_rw_std: 0.0005
+    accel_noise_std: 0.15
+    gyro_bias_init: 0.0015
+    gyro_bias_rw_std: 5.0e-05
+    gyro_noise_std: 0.002
+simulation:
+  T: 180.0
+  dt: 0.1
+  scenario: uav_route_with_outage

@@ -1,1 +1,0 @@
-# Пакет navigation_system
